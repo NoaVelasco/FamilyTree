@@ -63,7 +63,6 @@ def buscaFamiliar(event):
     nacPrint.set(campos[0][2]) if campos[0][2] != "NULL" else nacPrint.set("?")
     defPrint.set(campos[0][3]) if campos[0][3] != "NULL" else defPrint.set("")
 
-
     if isinstance(campos[0][4], int):
         padres = campos[0][4]
         cursor.execute("SELECT NOMBRE FROM FAMILIA WHERE ID=" + str(padres))
@@ -76,17 +75,12 @@ def buscaFamiliar(event):
 
             padres = tuple(campos[0][4].split(", "))
 
-            indexCont = 0
-
-            for padre in padres:
+            for i, padre in enumerate(padres):
                 padre = int(padre)
-                cursor.execute(
-                    "SELECT NOMBRE FROM FAMILIA WHERE ID=" + padres[indexCont]
-                )
+                cursor.execute("SELECT NOMBRE FROM FAMILIA WHERE ID=" + padres[i])
                 resultpadres = cursor.fetchone()
 
                 ent4pad.insert(1.0, resultpadres[0] + "\n")
-                indexCont += 1
 
     if isinstance(campos[0][5], int):
         hijos = campos[0][5]
@@ -100,18 +94,12 @@ def buscaFamiliar(event):
 
             hijos = tuple(campos[0][5].split(", "))
 
-            indexCont = 0
-
-            for hijo in hijos:
+            for i, hijo in enumerate(hijos):
                 hijo = int(hijo)
-                cursor.execute(
-                    "SELECT NOMBRE FROM FAMILIA WHERE ID=" + hijos[indexCont]
-                )
+                cursor.execute("SELECT NOMBRE FROM FAMILIA WHERE ID=" + hijos[i])
                 resultHijos = cursor.fetchone()
 
-                # print(resultHijos[0])
                 ent5hij.insert(1.0, resultHijos[0] + "\n")
-                indexCont += 1
 
     if isinstance(campos[0][6], int):
         hermanos = campos[0][6]
@@ -125,25 +113,18 @@ def buscaFamiliar(event):
 
             hermanos = tuple(campos[0][6].split(", "))
 
-            indexCont = 0
-
-            for hermano in hermanos:
+            for i, hermano in enumerate(hermanos):
                 hermano = int(hermano)
-                cursor.execute(
-                    "SELECT NOMBRE FROM FAMILIA WHERE ID=" + hermanos[indexCont]
-                )
+                cursor.execute("SELECT NOMBRE FROM FAMILIA WHERE ID=" + hermanos[i])
                 resultHermanos = cursor.fetchone()
 
-                # print(resultHermanos[0])
                 ent6her.insert(1.0, resultHermanos[0] + "\n")
-                indexCont += 1
 
     if isinstance(campos[0][7], int):
         conyug = campos[0][7]
         cursor.execute("SELECT NOMBRE FROM FAMILIA WHERE ID=" + str(conyug))
         resultconyug = cursor.fetchone()
 
-        # print(resultconyug[0])
         ent7con.insert(1.0, resultconyug[0])
 
     else:
@@ -151,18 +132,12 @@ def buscaFamiliar(event):
 
             conyug = tuple(campos[0][7].split(", "))
 
-            indexCont = 0
-
-            for con in conyug:
+            for i, con in enumerate(conyug):
                 con = int(con)
-                cursor.execute(
-                    "SELECT NOMBRE FROM FAMILIA WHERE ID=" + conyug[indexCont]
-                )
+                cursor.execute("SELECT NOMBRE FROM FAMILIA WHERE ID=" + conyug[i])
                 resultconyug = cursor.fetchone()
 
-                # print(resultconyug[0])
                 ent7con.insert(1.0, resultconyug[0] + "\n")
-                indexCont += 1
 
 
 # ------------TKINTER CONFIG 1------------------------------
